@@ -1,0 +1,76 @@
+\documentclass[letterpaper,10pt]{article}
+
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Idioma español.
+\usepackage[spanish,mexico, es-tabla]{babel}
+% Soporte de símbolos adicionales (matemáticas)
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{enumerate}
+\usepackage{ragged2e}
+% Soporte para imágenes.
+\usepackage{graphicx}
+% Soporte para código.
+\usepackage{listings}
+% Soporte para URL.
+\usepackage{hyperref}
+\usepackage[all]{xy} %para diagramas conmutativos
+% Modificamos los márgenes del documento.
+\usepackage[lmargin=2cm,rmargin=2cm,top=2cm,bottom=2cm]{geometry}
+\title{Computación Distribuida \\ Tarea 8}
+\author{González Montiel Luis Fernando \\}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+	\begin{enumerate}
+
+	 % Ejercicio 1.
+    \item Recuerda la reducción dada en clase para transformar cualquier detector de fallas que cumpla integridad débil en uno que cumple integridad fuerte.
+Demostrar que el algoritmo de transformación es correcto, es decir, demostrar que el detector de fallas simulado satisface integridad fuerte y que mantiene las propiedades de precisión (perpetua o eventual).\\
+   
+    \textsc{Solución:}
+    \\  
+    Si algún proceso p falla, hay un correcto proceso q que eventualmente sospecha de p (integridad débil). Cuando q envía su lista de sospechosos a cada proceso, p se marca como sospechoso y cada proceso agrega p a su lista de sospechosos. Como p falló, ahí será el momento en el que cada proceso deja de recibir mensajes de p, por lo que no eliminan p de su lista de sospechosos nuevamente.
+
+Para probar que se preserva la precisión perpetua, ya que ningún proceso sospecha p antes del tiempo, ningún proceso envía un mensaje con p en la lista de sospechosos antes de que p se crashe (si lo hace). Para una precisión eventual, si p es correcto y todos los procesos correctos no sospechan p, y hay algún proceso que sospecha p, entonces eventualmente falla. En otro caso, si p es correcto, eventualmente cada proceso correcto q recibe nuevamente un mensaje de p, luego q elimina p de la salida q. Dado que no hay procesos correctos sospecha p, ningún proceso envía p a la lista de sospechosos. Entonces, q no agrega p a la salida q nuevamente.
+
+    % Ejercicio 2.
+    \item ¿Para qué se usan los timeouts? Da ejemplos en la vida real donde sean usados.\\
+    \begin{lstlisting}
+   
+		\end{lstlisting}
+   
+    \textsc{Solución:}
+    \\
+    Un parámetro de red relacionado con un evento forzado diseñado para ocurrir al final de un tiempo transcurrido predeterminado.
+Un evento que ocurre al final de un período de tiempo predeterminado que comenzó al ocurrir otro evento específico. El timeout se puede evitar mediante una señal adecuada.\\
+Los timeout permiten un uso más eficiente de recursos limitados sin requerir interacción adicional del agente interesado en los bienes que causan el consumo de estos recursos. La idea básica es que en situaciones en las que un sistema debe esperar a que ocurra algo, en lugar de esperar indefinidamente, la espera se cancelará una vez transcurrido el tiempo de espera. Esto se basa en la suposición de que esperar más es inútil y que es necesaria alguna otra acción.\\
+Ejemplos:\\
+	-Las tabletas y los teléfonos inteligentes suelen apagar la luz de fondo después de un cierto tiempo sin intervención del usuario.\\
+	-En una herramienta electrónica de software de gestión de relaciones con clientes basada en texto, los hilos pueden cerrarse automáticamente en una base cronometrada, lo que permite a los trabajadores ahorrar tiempo de navegación. El cliente no tiene que enviar una señal de "Ya terminé".
+	
+	
+    % Ejercicio 3.
+    \item Diseña un detector de fallas que cumpla con integridad pero no con precisión.\\
+    
+    \textsc{Solución:}
+    \\
+    Podemos pensar un detector donde P siempre sospeche de Q en el tiempo t, es decir, que siempre este el suspectP [q] = true, así aunque si reciba mensajes o no, siempre va a sospechar y así asegurar la integridad aunque no con precisión.
+	
+	 % Ejercicio 4.
+    \item ¿Qué significa que una propiedad se cumpla eventualmente? ¿Se puede saber exactamente cuándo se cumplirá?\\
+    
+    \textsc{Solución:}
+    \\
+    Significa que en algún momento, tal vez pronto o tal vez tarde, pero se asegura que esa propiedad va a suceder.Pero no se sabe cuándo se cumplirá, pero se sabe que es seguro que sí ocurra.
+
+	\end{enumerate} 
+\end{document}

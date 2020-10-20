@@ -1,0 +1,104 @@
+\documentclass[letterpaper,10pt]{article}
+
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Idioma español.
+\usepackage[spanish,mexico, es-tabla]{babel}
+% Soporte de símbolos adicionales (matemáticas)
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{enumerate}
+\usepackage{ragged2e}
+% Soporte para imágenes.
+\usepackage{graphicx}
+% Soporte para código.
+\usepackage{listings}
+% Soporte para URL.
+\usepackage{hyperref}
+\usepackage[all]{xy} %para diagramas conmutativos
+% Modificamos los márgenes del documento.
+\usepackage[lmargin=2cm,rmargin=2cm,top=2cm,bottom=2cm]{geometry}
+\title{Computación Distribuida \\ Tarea 5}
+\author{González Montiel Luis Fernando \\}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+	\begin{enumerate}
+
+	 % Ejercicio 1.
+    \item Sean A y B dos procesos cuyos relojes no estan sincronizados pero ambos tienen drift acotado.
+     Cuando A manda un mensaje a B, el tiempo maximo real que tarda en llegar el mensaje es a lo mas D.
+     Supon que tienes un algoritmo en el que A manda mensajes cada T unidades de su tiempo. 
+     Para ir midiendo las unidades de tiempo, A tiene un contador que aumenta cada tanto 
+     (evento de computo local).\\
+     \\
+     Dibuja una ejecución $\alpha$ donde A manda 3 mensajes a B.\\
+     \textsc{Solución:}\\
+     \begin{center}
+     \includegraphics[width=0.7\textwidth]{ejecucion1.png}\\
+     \end{center}
+	 
+	 De la ejecución $\alpha$, menciona cuáles son los eventos y su relación de causalidad:\\
+	 \textsc{Solución:}
+     \\
+     Eventos: $\phi$1, $\phi$2, $\phi$3, $\phi$4, $\phi$5, $\phi$6\\
+	Relación de Causalidad:\\
+	$\phi$1 => $\phi$2\\
+	$\phi$2 => $\phi$3\\
+	$\phi$4 => $\phi$5\\
+	$\phi$5 => $\phi$6\\
+	\\
+	$\phi$1 => $\phi$4\\
+	$\phi$2 => $\phi$5\\
+	$\phi$3 => $\phi$6\\
+	\\
+	$\phi$1 => $\phi$3\\
+	$\phi$4 => $\phi$6\\
+	\\
+	¿Cuánto tiempo puede tardar a lo mas en terminar $\alpha$?
+
+	 \textsc{Solución:}\\
+	 $\phi$1 => $\phi$2 + $\phi$2 => $\phi$3 + $\phi$4 => $\phi$5 + $\phi$5 => $\phi$6 \\
+ 
+    % Ejercicio 2.
+   \item Considera la ejecucion $\alpha$ de la Figura 2. Los retardos maximos para cada uno de los eventos son\\ 
+   los siguientes: a $\longrightarrow$ b es Ba,b, b $\longrightarrow$ c es Bb,c, c $\longrightarrow$ d es Bc,d, d $\longrightarrow$ e es Bd,e, a $\longrightarrow$ e es Ba,e y b $\longrightarrow$ d es\\	   Bb,d. Los retardos mínimos son similares, pero invirtiendo el orden de las letras en B, i.e. el mínimo\\
+	tiempo que puede tomar en pasar a $\longrightarrow$ b es Bb,a.
+	\\	
+	¿Cuánto vale el retardo maximo de c a e en términos de las B0 s? Es decir, dado z(e) - z(c) $\leq$ x ,\\
+	¿Cuánto vale x?\\
+    \textsc{Solución:}
+    \\
+	Bc,d + Bd,e
+	\\
+	\\
+	¿Cuánto vale el retardo mínimo de toda la ejecución?\\
+	\textsc{Solución:}
+    \\
+	Bb,a + Bc,b + Bd,c + Be,d \\
+	\\
+	Anotar los eventos con los relojes lógicos y los relojes vectoriales.\\
+	\textsc{Solución:}
+    \\
+	\begin{center}
+    \includegraphics[width=0.7\textwidth]{reloj1.png}\\
+    \end{center}
+    
+    \begin{center}
+    \includegraphics[width=0.7\textwidth]{reloj2.png}\\
+    \end{center}
+	
+	% Ejercicio 3.
+   \item Sea $\alpha$ una ejecución y sea $\phi$1 y $\phi$2 dos eventos en $\alpha$. Si $\phi$1 => $\phi$2 entonces LT($\phi$1) < LT($\phi$2)
+	
+    
+	
+	\end{enumerate} 
+\end{document}

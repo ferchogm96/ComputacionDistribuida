@@ -1,0 +1,76 @@
+initialy do{
+	parent = null;
+	children = null;
+	visited = null;
+	if(Pi = Ps){
+		parent = Pi
+		let Pk ∈ neighborsi
+*		send # personas
+		send GO to Pk
+	}
+	upon the receiving of GO from Pj
+		if(parent = null){
+			parent = Pj;
+*			visited = {Pj} && {#personas}
+		   *if(visited=neighbors){
+		   		send BACK(yes) to Pj;
+		   }
+		}*else{
+			let Pk ∈ neighbors visited;
+			send GO to Pk;
+		}else{
+			send BACK(no) to Pj;
+		}
+		upon the receiving of BACK(resp)
+			if(resp=yes){
+				children = children ∪ {Pj}
+*				visited = visited u {Pj} && {#personas}
+				if(visited=neighbors){
+					if(parent = Pj){
+						return 
+					}*else{
+						send BACK(yes) to parent
+					}
+				}else{
+					let Pk ∈ neighbors \ visited
+					send GO to Pk
+				}
+			}
+
+}
+
+
+
+
+2.Explica por que el algoritmo de convergecast con broadcast puede
+ producir mas de un arbol.
+
+Porque si todas las aristas  tienen retardo 1, éste algorítmo forma un árbol BFS, 
+pero dependiendo los retardos que tengan las aristas, será la rita por anchura que tomará y será el árbol que generará
+
+
+
+
+
+3. (2.5ptos) Para el algoritmo BFS visto en clase, si las aristas tienen peso indicando que es el tiempo que toma en llegar un mensaje del v ́ertice p al q, ¿Cu ́anto tiempo le toma al algoritmo BFS formar el  ́arbol?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

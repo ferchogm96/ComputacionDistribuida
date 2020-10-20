@@ -1,0 +1,25 @@
+1. Demuestra que el siguiente protocolo cumple las propiedades de terminación, validez y acuerdo en una ronda.
+Dem de terminación:
+	El número de rondas esta acotado por lo que una vez que acaban las rondas, el algortímo termina después del return.
+
+Dem de Validez:
+	Una entrada Si[k] solo es modificada si Pi recibe un mensaje que contenga el par (Vk, k). El único que puede enviar eso es el proceso Pk, por lo que para todas las entradas Si[k] éstas fueron propuestas por algún proc.
+
+Dem de Acuerdo:
+	(Dos procesos Pi y Pj que deciden tienen el mismo vector Si = Sj).
+	Sea Si[k] = Vk al finalizar la última ronda, el proceso Pi recibió Vk por primera vez en alguna ronda. Notemos que mientras Pi y Pj deciden, ejecutan todas las f+1 rondas.
+	Hay dos casos: 
+		1.- r < r+1: Pi puso (Vk, k) en Newi en la ronda r y se lo mandó a Pj en r+1 => Pj recibió (Vk, k) durante la ronda r+1 =< f+1.
+
+		2.- r = f+1: (Vk, k) fue reenviado varias veces como a lo más f procesos pueden fallar, hay algún proceso Px que recibió el par (Vk, k) en la misma ronda r'<f+1 y lo reenvia en la ronda r'+1 =< f+1.
+
+
+2. ¿El protocolo anterior funciona si hay una falla en el sistema?
+Este protocolo no funciona si hay fallas.
+
+3. Argumenta por qué es necesario ejecutar f+1 rondas para llegar a un acuerdo en el primer protocolo visto para fallas.
+f+1 es una cota superior si en realidad si hay fallas, Puede fallar hasta f proceso f>n.
+Se hacen f+1 rondas porque asi sabemos que si hay todos los errores posibles en la última ronda se compone.
+
+4. Si no hay ninguna falla, ¿En cuántas rondas termina el protocolo con early stoping?
+La cota es min(t+2,f+1)rondas con t el número de procesos que en realidad si fallaron, es decir termina en 2 rondas.
